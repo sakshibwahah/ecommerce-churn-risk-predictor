@@ -6,20 +6,20 @@ This document defines all Key Performance Indicators (KPIs) used in the Olist Ch
 
 ## 1. Churn Rate
 
-**Definition:** Percentage of customers who have not placed a new order within a 180-day window after their last recorded purchase.
+**Definition:** Percentage of orders that resulted in a **dissatisfied experience**, defined as a review score of 1 or 2. This framing is used because the Olist dataset assigns a new `customer_id` per transaction, making recency-based churn definitions unreliable (they produce near-100% churn rates by construction).
 
 **Formula:**
 ```
-Churn Rate = (# customers with recency > 180 days) / (total unique customers) × 100
+Churn Rate = (# orders with review_score ≤ 2) / (total orders with a review) × 100
 ```
 
-**Data Source:** `orders.order_purchase_timestamp` per `customer_id`
+**Data Source:** `order_reviews.review_score` joined to `orders`
 
-**Reference Date:** 1 day after the maximum `order_purchase_timestamp` in the dataset (2018-09-04 for the Olist dataset).
+**Why not recency-based?** Defining churn as "no order in 180 days" and including `recency_days` as a model feature causes AUC = 1.0 (direct label leakage — the feature encodes the label boundary). The dissatisfied-experience definition eliminates this entirely.
 
-**Industry Benchmark:** E-commerce churn rates typically range from 15–30% annually. Olist's single-purchase rate is much higher due to marketplace dynamics.
+**Industry Benchmark:** A 12–15% dissatisfied-order rate is typical in e-commerce marketplaces with mixed seller quality.
 
-**Threshold:** A customer with `churn_prob > 0.5` from the XGBoost model is classified as "at-risk".
+**Threshold:** An order with `churn_prob > 0.5` from the XGBoost model is classified as high-risk.
 
 ---
 
@@ -150,11 +150,14 @@ Delay Days = JULIANDAY(delivered_date) - JULIANDAY(estimated_date)
 φ_i = Σ (|S|! × (|F|-|S|-1)! / |F|!) × [f(S∪{i}) - f(S)]
 ```
 
-**Top Features (expected ranking by SHAP importance):**
-1. `recency_days` — most predictive of churn
-2. `delivery_delay_days` — operational lever
-3. `avg_review_score` — satisfaction signal
-4. `avg_sentiment` — NLP signal from review comments
-5. `R` (RFM Recency score) — correlated with recency_days
-6. `num_orders` / `F` — engagement depth
-7. `total_payment_value` / `M` — customer value
+**Top Features (actual ranking by SHAP importance for this model):**
+1. `delivery_delay_days` — primary driver; each extra day of delay strongly increases dissatisfaction probability
+2. `actual_delivery_days` — absolute time perception, independent of the estimated date
+3. `review_vader_score` — VADER compound sentiment on review comment text (Portuguese lexicon injected)
+4. `freight_ratio` — disproportionate shipping cost relative to item price creates frustration
+5. `price` — higher-value orders have greater expectation and higher churn sensitivity
+6. `category_enc` — certain categories (electronics, large furniture) have structurally higher dispute rates
+7. `customer_state_enc` — regional delivery infrastructure varies; northern states see higher delays
+8. `same_state` — cross-state logistics are slower and more likely to arrive late
+9. `product_photos_qty` — low-quality listings lead to expectation mismatch
+10. `description_length` — short descriptions correlate with information asymmetry and returns
