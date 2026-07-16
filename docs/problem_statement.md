@@ -18,7 +18,7 @@ Olist faces a **customer retention crisis**: the majority of customers make only
 
 | Objective | Method | Outcome |
 |-----------|--------|---------|
-| Identify churned customers | Time-based churn labelling (no order in 180 days) | Binary churn labels for 90k+ customers |
+| Identify at-risk orders | Dissatisfied-experience labelling (review score 1 or 2) | Binary churn labels for 94,500 orders |
 | Predict churn probability | XGBoost classifier with VADER NLP features | Probability score per customer (AUC-ROC ≥ 0.80) |
 | Segment customer base | RFM scoring (Recency, Frequency, Monetary) | 9 actionable segments (Champions → Lost) |
 | Quantify revenue at risk | CLV × P(churn) | Total BRL at risk per customer and segment |
