@@ -3,8 +3,9 @@
 > **End-to-end customer intelligence on 100k+ real Brazilian e-commerce orders.**
 > XGBoost churn risk prediction · SHAP interpretability · RFM segmentation · Folium geospatial · Streamlit dashboard
 
----
+**[Live Demo → ecommerce-churn-risk-predictor on Streamlit](https://ecommerce-churn-risk-predictor-cnrlgnaypgk7tzfbsqoqod.streamlit.app/)**
 
+---
 
 
 ## Model Design Rationale
@@ -35,6 +36,7 @@ This project instead predicts **customer churn risk** — the probability that a
 | `same_state` | Cross-state logistics are slower and more likely to be late |
 | `customer_state_enc` | Regional delivery infrastructure varies significantly |
 | `category_enc` | Certain categories (electronics, large furniture) have higher dispute rates |
+| `review_vader_score` | VADER sentiment on review comment text (Portuguese lexicon) |
 
 ---
 
@@ -58,8 +60,7 @@ ecommerce-churn-risk-predictor/
 ├── models/
 │   ├── xgb_churn_model.pkl        Trained XGBoost classifier
 │   ├── scaler.pkl                 StandardScaler
-│   ├── feature_names.pkl          Feature name list
-│   └── label_encoders.pkl         State + category label encoders
+│   └── feature_names.pkl          Feature name list
 ├── outputs/
 │   ├── rfm_segments.csv           Customer RFM scores + segments
 │   ├── churn_predictions.csv      Churn risk probabilities per order
@@ -78,26 +79,36 @@ ecommerce-churn-risk-predictor/
 
 ## Quick Start
 
-### 1. Set Up Environment
+### Option A — Live App (no setup required)
+
+The dashboard is deployed on Streamlit Community Cloud:
+
+**[https://ecommerce-churn-risk-predictor-cnrlgnaypgk7tzfbsqoqod.streamlit.app/](https://ecommerce-churn-risk-predictor-cnrlgnaypgk7tzfbsqoqod.streamlit.app/)**
+
+---
+
+### Option B — Run Locally
+
+#### 1. Set Up Environment
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. Ingest Data into SQLite
+#### 2. Ingest Data into SQLite
 ```bash
 python data_preprocessing.py
 ```
 
-### 3. Run Notebooks (optional — for EDA and RFM)
+#### 3. Run Notebooks (optional — for EDA and RFM)
 ```bash
 jupyter notebook notebooks/01_sql_eda.ipynb
 # Repeat for 02, 03, 04, 05
 ```
 Run in order: 01 → 02 → 03 → 04 → 05.
 
-### 4. Launch Streamlit Dashboard
+#### 4. Launch Streamlit Dashboard
 ```bash
 streamlit run app/streamlit_app.py
 ```
