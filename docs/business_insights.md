@@ -105,16 +105,22 @@
 
 ## Quantified Revenue at Risk Summary
 
-```
-Total Revenue at Risk = CLV × P(churn) across all customers
+```text
+Total Revenue at Risk = CLV × P(churn) across all orders
+Computed from churn_predictions.csv joined with rfm_segments.csv
 
-Segment Breakdown (estimated):
-  Lost customers:          R$ 800k–1.2M  (high count × low CLV × ~100% churn)
-  At Risk:                 R$ 400k–600k  (mid CLV × high P(churn))
-  Can't Lose Them:         R$ 300k–500k  (high CLV × rising P(churn))
-  Hibernating:             R$ 250k–400k  (moderate CLV × moderate P(churn))
-  
-  TOTAL ESTIMATED:         R$ 1.7M–2.7M  at risk per 18-month observation window
+Segment Breakdown (exact, from data):
+  Loyal Customers:         R$ 1,844,864  (27,640 orders × avg CLV R$173)
+  Recent Customers:        R$ 1,162,538  (14,802 orders × avg CLV R$217)
+  Can't Lose Them:         R$ 1,013,691  ( 8,488 orders × avg CLV R$320)
+  Champions:               R$   948,596  ( 7,528 orders × avg CLV R$354)
+  At Risk:                 R$   907,723  (11,518 orders × avg CLV R$214)
+  Hibernating:             R$   849,185  (11,226 orders × avg CLV R$211)
+  Potential Loyalists:     R$   542,035  ( 4,187 orders × avg CLV R$300)
+  Lost:                    R$   169,539  ( 6,151 orders × avg CLV R$ 75)
+  Need Attention:          R$    85,104  ( 2,959 orders × avg CLV R$ 72)
+
+  TOTAL (data-verified):   R$ 7,523,459  projected over 24-month customer lifespans
 ```
 
 ---
