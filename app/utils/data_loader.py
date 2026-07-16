@@ -33,7 +33,6 @@ def load_churn_predictions() -> pd.DataFrame:
 
 @st.cache_data
 def load_clv() -> pd.DataFrame:
-    # clv_revenue_risk.csv is identical to churn_predictions.csv — read from canonical source
     path = os.path.join(OUTPUTS_DIR, 'churn_predictions.csv')
     return pd.read_csv(path) if os.path.exists(path) else pd.DataFrame()
 
