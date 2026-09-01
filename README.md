@@ -152,8 +152,8 @@ Opens at `http://localhost:8501`
 |--------|-------|
 | Algorithm | XGBoost (GBM with L1/L2 regularisation) |
 | Target | Dissatisfied experience (review score 1 or 2) |
-| CV AUC (5-fold) | 0.836 ± 0.003 |
-| Train AUC | 0.860 |
+| CV AUC (5-fold) | 0.842 ± 0.006 |
+| Train AUC | 0.873 |
 | At-risk base rate | 12.8% |
 | Explainability | SHAP TreeExplainer |
 | Class imbalance | `scale_pos_weight` (6.8×) |
