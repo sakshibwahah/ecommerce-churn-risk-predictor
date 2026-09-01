@@ -5,9 +5,9 @@
   "on_time_delivery_rate": 0.9188763346117964,
   "avg_review_score": 4.08642062404257,
   "avg_delay_days": -11.17812572885341,
-  "total_clv": 18302993.426666662,
-  "total_revenue_at_risk": 6700158.007789985,
-  "pct_revenue_at_risk": 0.36606897306907993,
-  "high_risk_customers": 11296,
-  "churn_rate": 0.12801058201058202
+  "total_clv": 20216758.266666666,
+  "total_revenue_at_risk": 7557259.112352641,
+  "pct_revenue_at_risk": 0.37381161770198484,
+  "high_risk_customers": 13718,
+  "churn_rate": 0.1472822479533889
 }
