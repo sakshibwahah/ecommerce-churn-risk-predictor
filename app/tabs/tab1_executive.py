@@ -6,6 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import pandas as pd
+import os
 from utils.data_loader import load_eda_summary, load_churn_predictions, load_clv, load_rfm, get_engine
 from utils.charts import DARK_TEMPLATE, FONT
 
@@ -53,6 +54,7 @@ def render():
     col_left, col_right = st.columns([2, 1])
 
     with col_left:
+        time_df = None
         try:
             time_df = pd.read_sql("""
                 SELECT STRFTIME('%Y-%m', order_purchase_timestamp) AS month,
@@ -64,6 +66,11 @@ def render():
                   AND order_purchase_timestamp >= '2017-01-01'
                 GROUP BY month ORDER BY month
             """, engine)
+        except Exception:
+            trend_path = os.path.join(os.path.dirname(__file__), '..', '..', 'outputs', 'monthly_trend.csv')
+            if os.path.exists(trend_path):
+                time_df = pd.read_csv(trend_path)
+        if time_df is not None and not time_df.empty:
             fig_trend = make_subplots(rows=2, cols=1, shared_xaxes=True,
                                      subplot_titles=['Monthly Orders', 'Monthly Revenue (BRL)'],
                                      row_heights=[0.4, 0.6])
@@ -75,8 +82,6 @@ def render():
                                     showlegend=False, paper_bgcolor='rgba(0,0,0,0)',
                                     plot_bgcolor='rgba(0,0,0,0)')
             st.plotly_chart(fig_trend, width='stretch')
-        except Exception as e:
-            st.warning(f'Could not load trend data: {e}')
 
     with col_right:
         if not rfm_df.empty and 'Segment' in rfm_df.columns:
