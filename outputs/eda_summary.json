@@ -5,14 +5,9 @@
   "on_time_delivery_rate": 0.9188763346117964,
   "avg_review_score": 4.08642062404257,
   "avg_delay_days": -11.17812572885341,
-  "total_clv": 25695518.51,
-  "total_revenue_at_risk": 6501195.34,
-  "pct_revenue_at_risk": 0.253,
-  "high_risk_customers": 0,
-  "churn_rate": 0.1285,
-  "high_risk_orders": 20788,
-  "model_auc_cv": 0.836,
-  "model_auc_cv_std": 0.008,
-  "model_label": "churn risk (review score 1-2)",
-  "total_orders_modeled": 95823
+  "total_clv": 18302993.426666662,
+  "total_revenue_at_risk": 6700158.007789985,
+  "pct_revenue_at_risk": 0.36606897306907993,
+  "high_risk_customers": 11296,
+  "churn_rate": 0.12801058201058202
 }
