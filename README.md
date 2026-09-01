@@ -6,7 +6,14 @@
 **[Live Demo → ecommerce-churn-risk-predictor on Streamlit](https://ecommerce-churn-risk-predictor-cnrlgnaypgk7tzfbsqoqod.streamlit.app/)**
 
 ---
+## Dataset
 
+**Olist Brazilian E-commerce Dataset** — Kaggle
+License: CC-BY-NC-SA-4.0
+Source: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+Period: September 2016 – August 2018
+Size: ~100k orders, 9 tables
+---
 
 ## Model Design Rationale
 
@@ -150,16 +157,6 @@ Opens at `http://localhost:8501`
 | At-risk base rate | 12.8% |
 | Explainability | SHAP TreeExplainer |
 | Class imbalance | `scale_pos_weight` (6.8×) |
-
----
-
-## Dataset
-
-**Olist Brazilian E-commerce Dataset** — Kaggle
-License: CC-BY-NC-SA-4.0
-Source: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
-Period: September 2016 – August 2018
-Size: ~100k orders, 9 tables
 
 ---
 
