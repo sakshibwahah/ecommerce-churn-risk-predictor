@@ -6,9 +6,9 @@
   "avg_review_score": 4.08642062404257,
   "avg_delay_days": -11.17812572885341,
   "total_clv": 20132252.266666666,
-  "total_revenue_at_risk": 7908158.041619824,
-  "pct_revenue_at_risk": 0.37381161770198484,
-  "high_risk_customers": 13718,
+  "total_revenue_at_risk": 7910226.428161576,
+  "pct_revenue_at_risk": 0.3929131387479523,
+  "high_risk_customers": 11360,
   "churn_rate": 0.12801058201058202,
   "model_auc": 0.8417
 }
