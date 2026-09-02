@@ -19,7 +19,7 @@ Olist faces a **customer retention crisis**: the majority of customers make only
 | Objective | Method | Outcome |
 |-----------|--------|---------|
 | Identify at-risk orders | Dissatisfied-experience labelling (review score 1 or 2) | Binary churn labels for 94,500 orders |
-| Predict churn probability | XGBoost classifier with VADER NLP features | Probability score per customer (AUC-ROC ≥ 0.80) |
+| Predict churn probability | XGBoost classifier with VADER NLP features | Probability score per order (CV AUC-ROC 0.842) |
 | Segment customer base | RFM scoring (Recency, Frequency, Monetary) | 9 actionable segments (Champions → Lost) |
 | Quantify revenue at risk | CLV × P(churn) | Total BRL at risk per customer and segment |
 | Map delivery & churn | Folium choropleths on Brazilian states | 3 interactive HTML maps |
@@ -40,7 +40,7 @@ Olist faces a **customer retention crisis**: the majority of customers make only
 
 ## Success Criteria
 
-- XGBoost churn model achieves **AUC-ROC ≥ 0.80** on held-out test set
+- XGBoost churn model achieves **CV AUC-ROC 0.842 ± 0.006** (5-fold cross-validation)
 - SHAP explanations correctly identify delivery delay and review score as top churn drivers
 - Streamlit dashboard loads all 5 tabs without errors on a machine with pre-computed outputs
 - Revenue at risk is quantified to **BRL precision** per customer and per segment

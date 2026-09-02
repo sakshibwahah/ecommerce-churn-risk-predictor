@@ -13,7 +13,7 @@
 | Churn Rate | ~12.8% |  Critical |
 | On-Time Delivery | ~92% |  At Target |
 | Avg Review Score | ~4.07/5.0 |  Good |
-| Revenue at Risk | ~R$ 7.5M |  Critical |
+| Revenue at Risk | ~R$ 7.9M |  Critical |
 | Avg CLV | ~R$ 150–250 |  Moderate |
 
 *Note: Exact figures computed from your notebook runs.*
@@ -106,21 +106,21 @@
 ## Quantified Revenue at Risk Summary
 
 ```text
-Total Revenue at Risk = CLV × P(churn) across all orders
+Total Revenue at Risk = CLV × avg_P(churn) per unique customer, summed across all customers
 Computed from churn_predictions.csv joined with rfm_segments.csv
 
-Segment Breakdown (exact, from data):
-  Loyal Customers:         R$ 1,844,864  (27,640 orders × avg CLV R$173)
-  Recent Customers:        R$ 1,162,538  (14,802 orders × avg CLV R$217)
-  Can't Lose Them:         R$ 1,013,691  ( 8,488 orders × avg CLV R$320)
-  Champions:               R$   948,596  ( 7,528 orders × avg CLV R$354)
-  At Risk:                 R$   907,723  (11,518 orders × avg CLV R$214)
-  Hibernating:             R$   849,185  (11,226 orders × avg CLV R$211)
-  Potential Loyalists:     R$   542,035  ( 4,187 orders × avg CLV R$300)
-  Lost:                    R$   169,539  ( 6,151 orders × avg CLV R$ 75)
-  Need Attention:          R$    85,104  ( 2,959 orders × avg CLV R$ 72)
+Segment Breakdown (customer-level, from data):
+  Loyal Customers:         R$ 1,899,230  (26,795 customers × avg CLV R$178)
+  Recent Customers:        R$ 1,251,131  (14,802 customers × avg CLV R$217)
+  Can't Lose Them:         R$ 1,083,298  ( 8,488 customers × avg CLV R$320)
+  Champions:               R$ 1,064,900  ( 6,392 customers × avg CLV R$417)
+  At Risk:                 R$   948,994  (10,943 customers × avg CLV R$225)
+  Hibernating:             R$   876,131  (10,775 customers × avg CLV R$220)
+  Potential Loyalists:     R$   563,690  ( 4,187 customers × avg CLV R$299)
+  Lost:                    R$   147,487  ( 6,151 customers × avg CLV R$ 75)
+  Need Attention:          R$    75,185  ( 2,959 customers × avg CLV R$ 72)
 
-  TOTAL (data-verified):   R$ 7,523,459  projected over 24-month customer lifespans
+  TOTAL (data-verified):   R$ 7,910,226  projected over 24-month customer lifespans
 ```
 
 ---

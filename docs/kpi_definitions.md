@@ -54,7 +54,7 @@ Where:
   Observation Period    = 18 months (Sep 2016 – Mar 2018)
 ```
 
-**Data Source:** `order_payments.payment_value`, `orders.order_id` per `customer_id`
+**Data Source:** `order_payments.payment_value`, `orders.order_id` per `customer_unique_id`
 
 **Note:** CLV is forward-looking. The 24-month lifespan is a conservative estimate for Brazilian e-commerce. Adjust based on your cohort analysis.
 
