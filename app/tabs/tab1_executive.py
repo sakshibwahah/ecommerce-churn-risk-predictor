@@ -21,16 +21,20 @@ def render():
     rfm_df = load_rfm()
     engine = get_engine()
 
-    rev_at_risk = 0
-    if 'revenue_at_risk' in clv_df.columns:
-        rev_at_risk = clv_df['revenue_at_risk'].sum()
-    elif 'revenue_at_risk' in churn_df.columns:
-        rev_at_risk = churn_df['revenue_at_risk'].sum()
+    # Use eda_summary.json for portfolio-level figures (customer-level, no double-counting)
+    rev_at_risk = summary.get('total_revenue_at_risk', 0)
+    if rev_at_risk == 0:
+        if 'revenue_at_risk' in clv_df.columns:
+            rev_at_risk = clv_df['revenue_at_risk'].sum()
+        elif 'revenue_at_risk' in churn_df.columns:
+            rev_at_risk = churn_df['revenue_at_risk'].sum()
 
     churn_rate = churn_df['churn'].mean() if 'churn' in churn_df.columns else summary.get('churn_rate', 0.128)
 
     avg_clv = 0
-    if 'CLV' in clv_df.columns:
+    if 'total_clv' in summary and summary.get('total_customers', 0) > 0:
+        avg_clv = summary['total_clv'] / summary['total_customers']
+    elif 'CLV' in clv_df.columns:
         avg_clv = clv_df['CLV'].mean()
     elif 'CLV' in churn_df.columns:
         avg_clv = churn_df['CLV'].mean()
