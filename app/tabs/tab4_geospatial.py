@@ -125,14 +125,14 @@ def render():
         st.error('State summary not found. Run the pipeline to generate outputs.')
         return
 
-    # Merge live churn data into state_df if available
+    # Merge live churn data into state_df if available (and not already present)
     if not churn_df.empty and 'customer_state' in churn_df.columns:
         agg = {}
-        if 'churn' in churn_df.columns:
+        if 'churn' in churn_df.columns and 'churn_rate' not in state_df.columns:
             agg['churn_rate'] = ('churn', 'mean')
-        if 'churn_prob' in churn_df.columns:
+        if 'churn_prob' in churn_df.columns and 'avg_churn_prob' not in state_df.columns:
             agg['avg_churn_prob'] = ('churn_prob', 'mean')
-        if 'revenue_at_risk' in churn_df.columns:
+        if 'revenue_at_risk' in churn_df.columns and 'revenue_at_risk' not in state_df.columns:
             agg['revenue_at_risk'] = ('revenue_at_risk', 'sum')
         if agg:
             churn_state = churn_df.groupby('customer_state').agg(**agg).reset_index()
