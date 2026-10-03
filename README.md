@@ -130,7 +130,7 @@ Opens at `http://localhost:8501`
 | 02 | **RFM Segmentation** | R/F/M scores (1–5), customer segments, 3D scatter | `outputs/rfm_segments.csv` |
 | 03 | **Churn Risk Prediction** | Leakage-free XGBoost, SHAP summary + waterfall, AUC-ROC curve | `models/`, `outputs/churn_predictions.csv` |
 | 04 | **Geospatial** | Folium choropleths: churn rate / delivery delay / revenue at risk | `outputs/state_summary.csv` |
-| 05 | **Revenue and CLV** | CLV per order, R$7.5M+ revenue at risk quantification | `outputs/churn_predictions.csv` |
+| 05 | **Revenue and CLV** | CLV per order, R$7.9M+ revenue at risk quantification | `outputs/churn_predictions.csv` |
 
 ---
 
